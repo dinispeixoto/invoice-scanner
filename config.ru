@@ -3,5 +3,5 @@ require 'bundler'
 
 Bundler.require
 
-require './file_upload'
+require './src/file_upload'
 run FileUpload

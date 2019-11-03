@@ -1,0 +1,9 @@
+version: '3.2'
+
+services:
+  invoice-scanner:
+    build: 
+      context: .
+    ports:
+      - '9292:9292'
+    
