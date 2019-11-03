@@ -20,7 +20,7 @@ class InvoiceParser
       file     = File.read(filename)
 
       extract_info(file)
-      remove_files(['../tmp/', '../public/uploads/'])
+      remove_files(['./tmp/', './public/uploads/'])
     rescue Exception => e
       p "Error: #{e}"
     end
@@ -68,14 +68,14 @@ class InvoiceParser
   end
 
   def pre_processed_image(filepath)
-    filename = filepath.match(/\.\.public\/uploads\/(.+)\.\w+/).captures[0]
+    filename = filepath.match(/public\/uploads\/(.+)\.\w+/).captures[0]
 
     puts "improving #{filename}"
     `mkdir -p tmp`
     `convert "#{filepath}" -brightness-contrast -20x50 -colorspace Gray "tmp/improved_#{filename}.jpg"`
 
     puts "cropping #{filename}"
-    `./multicrop "tmp/improved_#{filename}.jpg" "tmp/cropped_improved_#{filename}.jpg"`
+    `./scripts/multicrop "tmp/improved_#{filename}.jpg" "tmp/cropped_improved_#{filename}.jpg"`
 
     puts "bordering #{filename}"
     `convert "tmp/cropped_improved_#{filename}-000.jpg" -bordercolor white -border 5% "tmp/bordered_cropped_improved_#{filename}.jpg"`

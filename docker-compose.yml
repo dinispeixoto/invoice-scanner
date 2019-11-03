@@ -6,7 +6,6 @@ services:
       context: .
     ports:
       - '9292:9292'
-      - '9293:9293'
     environment:
       ELASTIC_HOSTNAME: elasticsearch
       ELASTIC_PORT: 9200

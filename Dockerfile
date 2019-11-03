@@ -1,7 +1,7 @@
-FROM alpine:3.10
+FROM ruby:2.6.5-alpine3.10
 
 RUN apk update && apk add \
-    ruby \
+    bash \ 
     imagemagick \
     tesseract-ocr \
     tesseract-ocr-data-por
@@ -9,7 +9,7 @@ RUN apk update && apk add \
 WORKDIR /opt/invoice-scanner
 COPY . .
 
-RUN gem install bundler --no-ri && bundler install
+RUN gem install bundler && bundler install
 
 EXPOSE 9292
 

@@ -5,7 +5,7 @@ require_relative 'parser'
 
 include FileUtils::Verbose
 
-UPLOADS_PATH = '../public/uploads/'
+UPLOADS_PATH = './public/uploads/'
 
 USERNAME = ENV['ELASTIC_USERNAME']
 PASSWORD = ENV['ELASTIC_PASSWORD']
@@ -29,27 +29,23 @@ class FileUpload < Sinatra::Base
     puts "New image!"
 
     begin
+
       uploaded_file  = params[:file][:tempfile]
       file_extension = File.basename(uploaded_file).match(/.+(\.\w+)$/).captures[0]
       filepath       = File.join(UPLOADS_PATH, SecureRandom.uuid) + file_extension
 
-      p uploaded_file
-      p filepath
-
       File.open filepath, 'wb' do |file|
-        p file
         file.write uploaded_file.read
       end
 
-      puts 'debug'
-
       parser = InvoiceParser.new
-      result = parser.parse_file(filepath)
+      result = parser.parse_file filepath 
       parser.print
 
       client = Elasticsearch::Client.new url: ELASTIC_URL, log: true
 
       client.create index: 'invoice', body: result
+
     rescue Exception => e
       puts "Error: #{e}"
     end
