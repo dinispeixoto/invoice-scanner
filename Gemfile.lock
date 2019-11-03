@@ -1,6 +1,18 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    elasticsearch (7.3.0)
+      elasticsearch-api (= 7.3.0)
+      elasticsearch-transport (= 7.3.0)
+    elasticsearch-api (7.3.0)
+      multi_json
+    elasticsearch-transport (7.3.0)
+      faraday
+      multi_json
+    faraday (0.17.0)
+      multipart-post (>= 1.2, < 3)
+    multi_json (1.14.1)
+    multipart-post (2.1.1)
     mustermann (1.0.3)
     rack (2.0.7)
     rack-protection (2.0.7)
@@ -20,6 +32,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  elasticsearch (~> 7.3.0)
   sinatra (~> 2.0)
   slim (~> 4.0)
 
