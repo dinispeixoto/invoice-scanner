@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title Invoice Image Uploader
+    meta content='text/html; charset=utf-8' http-equiv='Content-Type'
+  body
+    h1 Invoice Image Uploader
+    form action='/upload' method='post' enctype='multipart/form-data'
+      p
+        input type='file' name='file'
+      p
+        input type='submit' value='Upload'
