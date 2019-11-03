@@ -1,16 +1,15 @@
-FROM ubuntu:18.04
+FROM alpine:3.10
 
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add \
     ruby \
-    rubygems \
     imagemagick \
     tesseract-ocr \
-    tesseract-ocr-por
+    tesseract-ocr-data-por
 
 WORKDIR /opt/invoice-scanner
 COPY . .
 
-RUN gem install bundler && bundler install
+RUN gem install bundler --no-ri && bundler install
 
 EXPOSE 9292
 
