@@ -2,6 +2,6 @@
 
 source 'https://rubygems.org'
 
-gem 'sinatra', '~> 2.0'
+gem 'sinatra', '~> 2.2'
 gem 'slim', '~> 4.0'
 gem 'elasticsearch', '~> 7.3.0'
